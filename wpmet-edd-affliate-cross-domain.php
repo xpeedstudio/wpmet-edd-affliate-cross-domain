@@ -17,13 +17,13 @@ if(!is_admin() && isset($_GET['rui']) && !empty($_GET['rui']) && is_numeric($_GE
     add_action( 'wp_footer', 'wpmet_edd_affliate_cross_domain_function' );
 }
 
-if(isset($_SESSION["_rui"])){
+if(!is_admin() && isset($_SESSION["_rui"])){
     add_action( 'wp_footer', 'wpmet_edd_affliate_cross_domain_function' );
 }
 
 function wpmet_edd_affliate_cross_domain_function() {
     $refurl = 'https://account.wpmet.com/affiliate-tracker.php?rui=' . (isset($_SESSION["_rui"]) ? $_SESSION["_rui"] : -1);
-    echo $refurl;
+    // echo $refurl;
     ?>
         <iframe src="<?php echo $refurl; ?>" style="height:1px; width:1px; border:0; z-index:-999; opacity:0; overflow: hidden"></iframe>
     <?php
